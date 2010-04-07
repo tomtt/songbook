@@ -6,3 +6,6 @@ source :gemcutter
 
 #any other gems you need
 gem 'sqlite3-ruby'
+gem 'haml'
+gem 'rspec'
+gem 'rspec-rails'
