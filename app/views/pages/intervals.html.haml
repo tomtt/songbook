@@ -1,4 +1,12 @@
-- intervals = %w{uni m2 M2 m3 M3 P4 Tri P5 m6 M6 m7 M7 oct}
-- notes_sharp = %w{ C C# D D# E F F# G G# A A# B C}
-- notes_flat = %w{ C Db D Eb E F Gb G Ab A Bb B C}
-hello
+- intervals = Music::Intervals.new(:key_note => "C")
+%table
+  %tr
+    %th Step
+    %th Interval
+    %th{:colspan => 13} Keys
+  - 13.times do |note_step|
+    %tr
+      %td= note_step
+      %td= intervals.step_to_interval(note_step)
+      - 12.times do |key_step|
+        %td= intervals.step_to_note(note_step + key_step)

@@ -63,3 +63,17 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+table th {
+  border: solid 1px #666;
+  text-align: left;
+}
+
+table td {
+  border: solid 1px #999;
+  padding: 0.2em;
+}
