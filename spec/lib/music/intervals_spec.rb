@@ -57,7 +57,7 @@ describe Music::Intervals do
     end
 
     context "with sharp notes" do
-      subject { Music::Intervals.new(:key_note => "C", :note_mode => "sharp") }
+      subject { Music::Intervals.new(:key_note => "C", :note_accidental_mode => "sharp") }
 
       describe "#step_to_note" do
         it "maps to the correct notes" do
@@ -83,7 +83,7 @@ describe Music::Intervals do
       end
     end
     context "with flat notes" do
-      subject { Music::Intervals.new(:key_note => "C", :note_mode => "flat") }
+      subject { Music::Intervals.new(:key_note => "C", :note_accidental_mode => "flat") }
 
       describe "#step_to_note" do
         it "maps to the correct notes" do
@@ -137,7 +137,7 @@ describe Music::Intervals do
     end
 
     context "with sharp notes" do
-      subject { Music::Intervals.new(:key_note => "F#", :note_mode => "sharp") }
+      subject { Music::Intervals.new(:key_note => "F#", :note_accidental_mode => "sharp") }
 
       describe "#step_to_note" do
         it "maps to the correct notes" do
@@ -163,7 +163,7 @@ describe Music::Intervals do
       end
     end
     context "with flat notes" do
-      subject { Music::Intervals.new(:key_note => "F#", :note_mode => "flat") }
+      subject { Music::Intervals.new(:key_note => "F#", :note_accidental_mode => "flat") }
 
       describe "#step_to_note" do
         it "maps to the correct notes" do
@@ -194,24 +194,56 @@ describe Music::Intervals do
 
     describe "#step_to_note" do
       it "maps to the correct notes" do
-        [[ 0, "A#"],
+        [[ 0, "Bb"],
          [ 1, "B" ],
          [ 2, "C" ],
-         [ 3, "C#"],
+         [ 3, "Db"],
          [ 4, "D" ],
-         [ 5, "D#"],
+         [ 5, "Eb"],
          [ 6, "E" ],
          [ 7, "F" ],
-         [ 8, "F#"],
+         [ 8, "Gb"],
          [ 9, "G" ],
-         [10, "G#"],
+         [10, "Ab"],
          [11, "A" ],
-         [12, "A#"],
+         [12, "Bb"],
          [25, "B" ],
          [-1, "A" ]].each do |step_expected_note_pair|
           (step, expected_note) = *step_expected_note_pair
           check_step_to_note(step, expected_note)
         end
+      end
+    end
+  end
+
+  describe "default sharp/flat accidental_mode" do
+    def check_note_to_default_accidental_model(note, expected_default_accidental_mode)
+      "#{note}: #{Music::Intervals.default_accidental_mode(note)}".should ==
+        "#{note}: #{expected_default_accidental_mode}"
+    end
+
+    it "should be as expected for all notes" do
+      # C, G, D, A, E, B, F#, C#, G#, D#, A#, F
+      # 0  1  2  3  4  5  6   5   4   3   2   1
+        [["C" , :sharp],
+         ["C#", :flat],
+         ["Db", :flat],
+         ["D" , :sharp],
+         ["D#", :flat],
+         ["Eb", :flat],
+         ["E" , :sharp],
+         ["F" , :flat],
+         ["F#", :sharp],
+         ["Gb", :flat],
+         ["G" , :sharp],
+         ["G#", :flat],
+         ["Ab", :flat],
+         ["A" , :sharp],
+         ["A#", :flat],
+         ["Bb", :flat],
+         ["B" , :sharp]].each do |note_expected_default_accidental_mode_pair|
+        (note, expected_default_accidental_mode) = *note_expected_default_accidental_mode_pair
+        check_note_to_default_accidental_model(note, expected_default_accidental_mode)
       end
     end
   end

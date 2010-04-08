@@ -1,7 +1,11 @@
 module Music
   class Intervals
     def initialize(options = {})
-      @mode = (options[:note_mode] || :sharp).to_sym
+      if options[:note_accidental_mode]
+        @accidental_mode = options[:note_accidental_mode].to_sym
+      else
+        @accidental_mode = Intervals.default_accidental_mode(options[:key_note])
+      end
       @key_offset = 0
       if options[:key_note]
         @key_offset = index_of_note(options[:key_note])
@@ -10,7 +14,7 @@ module Music
     end
 
     def step_to_note(step)
-      note_mapping((step + @key_offset) % 12, @mode)
+      note_mapping((step + @key_offset) % 12, @accidental_mode)
     end
 
     def step_to_interval(step)
@@ -18,11 +22,19 @@ module Music
       @intervals[step]
     end
 
+    def self.default_accidental_mode(note)
+      if %w{C# Db D# Eb F Gb G# Ab A# Bb}.include? note
+        :flat
+      else
+        :sharp
+      end
+    end
+
     private
 
-    def note_mapping(step, mode)
+    def note_mapping(step, accidental_mode)
       set_notes_mapping
-      @notes[mode][step]
+      @notes[accidental_mode][step]
     end
 
     def index_of_note(note)
