@@ -13,6 +13,11 @@ module Music
       note_mapping((step + @key_offset) % 12, @mode)
     end
 
+    def step_to_interval(step)
+      set_notes_mapping
+      @intervals[step]
+    end
+
     private
 
     def note_mapping(step, mode)
@@ -30,6 +35,7 @@ module Music
       @notes = {}
       @notes[:sharp] = %w{ C C# D D# E F F# G G# A A# B }
       @notes[:flat] = %w{ C Db D Eb E F Gb G Ab A Bb B }
+      @intervals = %w{Uni m2 M2 m3 M3 P4 Tri P5 m6 M6 m7 M7 Oct}
     end
   end
 end

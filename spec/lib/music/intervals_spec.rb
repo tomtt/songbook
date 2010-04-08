@@ -29,6 +29,31 @@ describe Music::Intervals do
           check_step_to_note(step, expected_note)
         end
       end
+
+      describe "#step_to_interval" do
+        def check_step_to_interval(step, expected_interval)
+          subject.step_to_interval(step).should == expected_interval
+        end
+
+        it "maps to the correct intervals" do
+          [[ 0, "Uni" ],
+           [ 1, "m2"],
+           [ 2, "M2" ],
+           [ 3, "m3"],
+           [ 4, "M3" ],
+           [ 5, "P4" ],
+           [ 6, "Tri"],
+           [ 7, "P5" ],
+           [ 8, "m6"],
+           [ 9, "M6" ],
+           [10, "m7"],
+           [11, "M7" ],
+           [12, "Oct" ]].each do |step_expected_interval_pair|
+            (step, expected_interval) = *step_expected_interval_pair
+            check_step_to_interval(step, expected_interval)
+          end
+        end
+      end
     end
 
     context "with sharp notes" do
