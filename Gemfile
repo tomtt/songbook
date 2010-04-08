@@ -7,5 +7,5 @@ source :gemcutter
 #any other gems you need
 gem 'sqlite3-ruby'
 gem 'haml'
-gem 'rspec'
-gem 'rspec-rails'
+gem "rspec-rails", ">= 2.0.0.beta.1"
+gem "ruby-debug"
