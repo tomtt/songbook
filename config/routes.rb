@@ -1,5 +1,5 @@
 Songbook::Application.routes.draw do |map|
-  match 'pages/intervals' => 'pages#intervals'
+  match '/pages/:action' => 'pages'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
