@@ -13,8 +13,8 @@ module Music
       @options = options
     end
 
-    def step_to_note(step)
-      note_mapping((step + @key_offset) % 12, @accidental_mode)
+    def step_to_note(step, accidental_mode = @accidental_mode)
+      note_mapping((step + @key_offset) % 12, accidental_mode)
     end
 
     def step_to_interval(step)

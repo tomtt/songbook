@@ -9,4 +9,4 @@
       %td= note_step
       %td= intervals.step_to_interval(note_step)
       - 12.times do |key_step|
-        %td= intervals.step_to_note(note_step + key_step)
+        %td= intervals.step_to_note(note_step + key_step, Music::Intervals.default_accidental_mode(intervals.step_to_note(key_step)))

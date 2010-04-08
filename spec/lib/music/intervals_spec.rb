@@ -30,6 +30,10 @@ describe Music::Intervals do
         end
       end
 
+      it "maps to the correct note with the other accidental_mode" do
+        subject.step_to_note(1, :flat).should == "Db"
+      end
+
       describe "#step_to_interval" do
         def check_step_to_interval(step, expected_interval)
           subject.step_to_interval(step).should == expected_interval
