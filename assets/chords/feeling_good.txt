@@ -2,5 +2,7 @@ title: Feeling good
 performer: Nina Simone
 original_key: Bb
 key: Bb
-first_verse_notes: 9 12 14 16 16 16 16 9 12 14
-bass_notes: 9 9 7 7 5 5 4 4 7 4 7
+first_verse_notes: R-3 +3 +2 +2 +0 +0 +0 +0 -7 +3 +2
+bass_notes: R-3 +0 -2 +0 -2 +0 -1 +0 +3 -3 +3
+
+Gm A Bb Dm

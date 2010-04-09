@@ -2,7 +2,7 @@ title: Don't worry be happy
 performer: Bobby McFerrin
 original_key: C
 key: G
-first_verse_notes: 4 4 2 4 2 4 4 7
+first_verse_notes: R+4 +0 -2 +2 -2 +2 +3
 
 INTRO:
 G Am C G    x2
