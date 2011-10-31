@@ -4,7 +4,7 @@ require "ruby-debug"
 LINEBREAK = "<br>\n"
 
 class SongLine
-  CHORD_REGEXP = /\b[A-G][#bm0-9]*\b/
+  CHORD_REGEXP = /\b[A-G][+#abdm0-9]*\b/
 
   def initialize(chords, lyrics)
     @chords = chords
@@ -27,16 +27,18 @@ class SongLine
 
   # Assumes that both @chords and @lyrics are set
   def merge!
-    padding = ""
-    if (size_diff = (@chords.length - @lyrics.length)) > 0
-      padding = " " * size_diff
-    end
-    @merged = @lyrics + padding
+    @merged = @lyrics
+    @tail = ""
     parse_chords
-    @chords_with_locations.reverse.each do |chord|
-      @merged.insert(chord[1], format_chord(chord[0]))
+    @chords_with_locations.reverse.each do |chord_with_index|
+      chord, index = chord_with_index
+      if index < @lyrics.length
+        @merged.insert(index, format_chord(chord))
+      else
+        @tail = format_chord(chord) + " " + @tail
+      end
     end
-    @merged + LINEBREAK
+    @merged + @tail + LINEBREAK
   end
 
   def merge
