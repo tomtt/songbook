@@ -4,7 +4,7 @@ require "ruby-debug"
 LINEBREAK = "<br>\n"
 
 class SongLine
-  CHORD_REGEXP = /\b[A-G][+#abdm0-9]*\b/
+  CHORD_REGEXP = /[A-G][+#abdmsu0-9*\/]*/
 
   def initialize(chords, lyrics)
     @chords = chords
@@ -73,6 +73,9 @@ class ChordParse
   end
 
   def contains_only_chords?(line)
+    line = line.gsub("sus", "")
+    line = line.gsub("dim", "")
+    line = line.gsub("aug", "")
     if line =~ /[h-ln-z]/i
       return false
     end
